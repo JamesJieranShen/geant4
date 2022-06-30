@@ -1,3 +1,8 @@
+bin
+share
+lib64
+include
+
 # Prerequisites
 *.d
 
