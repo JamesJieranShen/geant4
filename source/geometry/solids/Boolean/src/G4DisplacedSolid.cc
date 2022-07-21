@@ -57,10 +57,19 @@ G4DisplacedSolid::G4DisplacedSolid( const G4String& pName,
                                     const G4ThreeVector& transVector    )
   : G4VSolid(pName), fRebuildPolyhedron(false), fpPolyhedron(0)
 {
-  fPtrSolid = pSolid ;
-  fPtrTransform = new G4AffineTransform(rotMatrix,transVector) ;
-  fPtrTransform->Invert() ;
-  fDirectTransform = new G4AffineTransform(rotMatrix,transVector) ;
+  if (pSolid->GetEntityType() == "G4DisplacedSolid")
+  {
+    fPtrSolid = ((G4DisplacedSolid*)pSolid)->GetConstituentMovedSolid();
+    G4AffineTransform t1 = ((G4DisplacedSolid*)pSolid)->GetDirectTransform();
+    G4AffineTransform t2 = G4AffineTransform(rotMatrix,transVector);
+    fDirectTransform = new G4AffineTransform(t1*t2);
+  }
+  else
+  { 
+    fPtrSolid = pSolid;
+    fDirectTransform = new G4AffineTransform(rotMatrix,transVector);
+  }
+  fPtrTransform = new G4AffineTransform(fDirectTransform->Inverse());
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -72,13 +81,21 @@ G4DisplacedSolid::G4DisplacedSolid( const G4String& pName,
                                     const G4Transform3D& transform  )
   : G4VSolid(pName), fRebuildPolyhedron(false), fpPolyhedron(0)
 {
-  fPtrSolid = pSolid ;
-  fDirectTransform = new G4AffineTransform(transform.getRotation().inverse(),
-                                           transform.getTranslation()) ;
-
-  fPtrTransform    = new G4AffineTransform(transform.getRotation().inverse(),
-                                           transform.getTranslation()) ;
-  fPtrTransform->Invert() ;
+  if (pSolid->GetEntityType() == "G4DisplacedSolid")
+  {
+    fPtrSolid = ((G4DisplacedSolid*)pSolid)->GetConstituentMovedSolid();
+    G4AffineTransform t1 = ((G4DisplacedSolid*)pSolid)->GetDirectTransform();
+    G4AffineTransform t2 = G4AffineTransform(transform.getRotation().inverse(),
+                                             transform.getTranslation());
+    fDirectTransform = new G4AffineTransform(t1*t2);
+  }
+  else
+  { 
+    fPtrSolid = pSolid;
+    fDirectTransform = new G4AffineTransform(transform.getRotation().inverse(),
+                                             transform.getTranslation()) ;
+  }
+  fPtrTransform = new G4AffineTransform(fDirectTransform->Inverse());
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -91,10 +108,21 @@ G4DisplacedSolid::G4DisplacedSolid( const G4String& pName,
                                     const G4AffineTransform directTransform )
   : G4VSolid(pName), fRebuildPolyhedron(false), fpPolyhedron(0)
 {
-  fPtrSolid = pSolid ;
-  fDirectTransform = new G4AffineTransform( directTransform );
-  fPtrTransform    = new G4AffineTransform( directTransform.Inverse() ) ; 
+  if (pSolid->GetEntityType() == "G4DisplacedSolid")
+  {
+    fPtrSolid = ((G4DisplacedSolid*)pSolid)->GetConstituentMovedSolid();
+    G4AffineTransform t1 = ((G4DisplacedSolid*)pSolid)->GetDirectTransform();
+    G4AffineTransform t2 = G4AffineTransform(directTransform);
+    fDirectTransform = new G4AffineTransform(t1*t2);
+  }
+  else
+  { 
+    fPtrSolid = pSolid;
+    fDirectTransform = new G4AffineTransform(directTransform);
+  }
+  fPtrTransform = new G4AffineTransform(fDirectTransform->Inverse());
 }
+
 
 ///////////////////////////////////////////////////////////////////
 //
