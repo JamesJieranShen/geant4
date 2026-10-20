@@ -272,7 +272,7 @@ G4ParticleHPChannel::ApplyYourself(const G4HadProjectile& theTrack,
     }
   }
   if (sum == 0) {
-    it = G4lrint(niso * G4UniformRand());
+    it = std::min(static_cast<G4int>(niso * G4UniformRand()), niso - 1);
   }
   else {
     G4double random = G4UniformRand();
