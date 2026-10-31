@@ -68,6 +68,10 @@ G4ParticleHPManager::G4ParticleHPManager()
   {
     PHP_USE_POISSON = false;
   }
+  if (nullptr != ss && "Poisson" == G4String(ss))
+  {
+    PHP_USE_POISSON = true;
+  }
   ss = G4FindDataDir("G4ParticleHPDebug");
   if (nullptr != ss)
   {
