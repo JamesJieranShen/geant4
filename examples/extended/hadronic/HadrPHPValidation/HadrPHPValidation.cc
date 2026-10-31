@@ -42,6 +42,7 @@
 #include "G4VUserPrimaryGeneratorAction.hh"
 
 #include <cstdio>
+#include <cstdlib>
 
 namespace
 {
@@ -198,6 +199,12 @@ int main(int argc, char** argv)
   std::fprintf(products, "event,pdg,Z,A,excitation,kinetic,px,py,pz,mass\n");
 
   G4HadronicParameters::Instance();  // constructs the messenger for the macro
+  // Disables the relabelling of products in G4ParticleHPInelasticBaseFS::BaseApply, for the
+  // investigation of the tabulated draws.
+  if (std::getenv("HADRPHP_DO_NOT_ADJUST") != nullptr)
+  {
+    G4ParticleHPManager::GetInstance()->SetDoNotAdjustFinalState(true);
+  }
   // Sequential, so that a seed fixes the whole sequence of events.
   auto runManager = new G4RunManager;
   runManager->SetUserInitialization(new DetectorConstruction);

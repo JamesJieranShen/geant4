@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compare the output of run_tests.sh: identity of the event records, and correlated vs independent.
 
-    analyze.py <output dir> <TENDL Alpha/Inelastic dir>  ->  <output dir>/report.md, spectra_<E>.png
+    analyze.py <output dir> <TENDL Alpha/Inelastic dir>  ->  <output dir>/report.md, spectra_<E>.pdf
 """
 import filecmp
 import re
@@ -177,7 +177,7 @@ def main(out, tendl_dir):
         axes[0][0].legend()
         fig.suptitle(f"alpha + 40Ar, {e} MeV, Poisson")
         fig.tight_layout()
-        fig.savefig(out / f"spectra_{e}.png", dpi=110)
+        fig.savefig(out / f"spectra_{e}.pdf")
         plt.close(fig)
 
     (out / "report.md").write_text("\n".join(r) + "\n")

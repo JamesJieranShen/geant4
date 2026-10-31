@@ -24,3 +24,12 @@ The data default to /cvmfs/geant4.cern.ch/share/data and the 2021 G4TENDL 1.4; s
 - Test 2 compares the flag on and off with Poisson, and both against the tabulated yields.
 
 `results/` has the output of one run (5, 10, 20 MeV; 100k primaries for test 1, 1M for test 2).
+
+## Investigation of the spectra and the residual loss
+
+    ./run_investigation.sh <pr exe> <investigation dir>
+    ./investigate.py <investigation dir> <run_tests output dir> $G4PARTICLEHPDATA/Alpha/Inelastic <output dir>
+
+`HADRPHP_DO_NOT_ADJUST=1` turns off the relabelling in `BaseApply`, which leaves the tabulated draws.
+`investigate.py` rebuilds the correlated spectra from those draws, and scans the alpha energy. The output
+of one run is in `results/investigation/`.
