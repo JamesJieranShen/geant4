@@ -1,0 +1,31 @@
+E=5 on: violating events=0 of 1000000, max|dE|=0.000989 MeV; sum heavy yields=1.00000; chi2/ndf resid vs table(renorm)=5.8/4
+    (20043, 0.999178, np.float64(0.999145), np.float64(-0.0))
+    (20044, 0.000663, np.float64(0.000676), np.float64(0.5))
+    (19043, 0.000123, np.float64(0.000147), np.float64(2.2))
+    (18040, 3.7e-05, np.float64(3.2e-05), np.float64(-0.8))
+    n off q50/90/99 [1.471 2.078 2.43 ] on [1.46  2.037 2.362]
+    p off q50/90/99 [1.012 1.271 1.427] on [0.989 1.199 1.326]
+    alpha off q50/90/99 [2.862 5.028 7.323] on [2.928 3.331 3.652]
+    on: mean n T by n count {1: 1.3} events {1: 999145}
+E=10 on: violating events=0 of 1000000, max|dE|=0.000905 MeV; sum heavy yields=1.00001; chi2/ndf resid vs table(renorm)=3.4/4
+    (20043, 0.936818, np.float64(0.936671), np.float64(-0.2))
+    (19043, 0.032619, np.float64(0.032903), np.float64(1.6))
+    (18040, 0.030354, np.float64(0.03021), np.float64(-0.8))
+    (20044, 0.00021, np.float64(0.000216), np.float64(0.4))
+    n off q50/90/99 [1.888 4.118 6.347] on [1.883 4.085 6.113]
+    p off q50/90/99 [3.618 5.009 6.032] on [3.606 4.919 5.813]
+    alpha off q50/90/99 [ 6.553  8.675 13.858] on [6.38  8.115 8.872]
+    on: mean n T by n count {1: 2.126} events {1: 936671}
+E=20 on: violating events=0 of 1000000, max|dE|=0.001 MeV; sum heavy yields=0.99957; chi2/ndf resid vs table(renorm)=8.2/8
+    (20042, 0.695819, np.float64(0.695382), np.float64(-0.5))
+    (18040, 0.094977, np.float64(0.095111), np.float64(0.4))
+    (20043, 0.082489, np.float64(0.082288), np.float64(-0.7))
+    (19042, 0.054635, np.float64(0.054744), np.float64(0.5))
+    (18039, 0.042488, np.float64(0.042479), np.float64(-0.0))
+    (19043, 0.028831, np.float64(0.02925), np.float64(2.5))
+    (16036, 0.000594, np.float64(0.000596), np.float64(0.1))
+    (19041, 0.000146, np.float64(0.000134), np.float64(-1.0))
+    n off q50/90/99 [1.881 4.635 8.726] on [1.673 3.912 6.155]
+    p off q50/90/99 [ 4.101  7.763 11.224] on [3.159 5.525 9.899]
+    alpha off q50/90/99 [ 9.938 16.698 22.742] on [ 7.749 15.157 18.18 ]
+    on: mean n T by n count {1: 1.667, 2: 2.004} events {1: 178873, 2: 695382}
