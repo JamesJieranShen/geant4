@@ -551,8 +551,9 @@ G4Fragment* G4PhotonEvaporation::GenerateGamma(G4Fragment* nucleus)
 
     if (nullptr != fLevelManager)
     {
-      // final discrete level
-      if (efinal < fLevelEnergyMax + fTolerance)
+      // final discrete level; a nucleus without excited levels (e.g. 2H)
+      // decays directly to the ground state
+      if (efinal < fLevelEnergyMax + fTolerance || fLevelEnergyMax < fTolerance)
       {
         fIndex = fLevelManager->NearestLevelIndex(efinal, fIndex);
         G4double el = fLevelManager->LevelEnergy(fIndex);
